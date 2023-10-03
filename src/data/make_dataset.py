@@ -22,6 +22,8 @@ class Dataset:
         self.clean_accounts = self.accounts.dropna(
             axis=1, thresh=len(self.accounts) * self.NANS_THRESHOLD
         )
+        self.clean_accounts = self.clean_accounts.join(self.accounts["plan_id"].copy())
+
         self.clean_users = self.users.dropna(
             axis=1, thresh=len(self.users) * self.NANS_THRESHOLD
         )
