@@ -1,10 +1,6 @@
 monday-vip-consulting
 ==============================
 
-![Alt text](resources/logo.png)
-
-monday-vip-consulting
-
 Project Organization
 ------------
 
