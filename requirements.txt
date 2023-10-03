@@ -8,3 +8,4 @@ jupyter
 ipdb
 ipython
 pre-commit
+invoke

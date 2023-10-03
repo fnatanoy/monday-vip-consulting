@@ -1,7 +1,39 @@
-monday-vip-consulting
-==============================
+# monday-vip-consulting
 
-Project Organization
+## Project Description
+
+## Project Installation
+
+1. Install all requirements
+
+    ```bash
+    pip install -r requirements.txt
+    ```
+
+2. Install pre-commit hooks
+
+    ```bash
+    pre-commit install
+    ```
+
+3. Add all 4 data csvs to `data/raw` folder
+
+4. Create dataset:
+
+    ```bash
+    inv create-dataset
+    ```
+
+## EDA
+
+1. Run the following command to generate the EDA report
+
+```bash
+tbd
+```
+
+## Project Organization
+
 ------------
 
     ├── LICENSE
