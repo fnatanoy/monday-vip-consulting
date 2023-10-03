@@ -1,9 +1,10 @@
 plotly
 numpy
 pandas
-sklearn
+scikit-learn
 reportity
 black
 jupyter
 ipdb
 ipython
+pre-commit
