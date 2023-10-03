@@ -1,0 +1,9 @@
+plotly
+numpy
+pandas
+sklearn
+reportity
+black
+jupyter
+ipdb
+ipython
