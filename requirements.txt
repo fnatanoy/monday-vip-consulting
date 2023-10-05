@@ -9,3 +9,4 @@ ipdb
 ipython
 pre-commit
 invoke
+jupyter-black
