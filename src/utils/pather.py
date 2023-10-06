@@ -48,20 +48,12 @@ class Pather:
         return os.path.join(self.interim_data_path, "users.csv")
 
     @property
-    def processed_accounts(self) -> str:
-        return os.path.join(self.processed_data_path, "accounts.csv")
+    def features(self) -> str:
+        return os.path.join(self.processed_data_path, "features.csv")
 
     @property
-    def processed_events(self) -> str:
-        return os.path.join(self.processed_data_path, "events.csv")
-
-    @property
-    def processed_subscriptions(self) -> str:
-        return os.path.join(self.processed_data_path, "subscriptions.csv")
-
-    @property
-    def processed_users(self) -> str:
-        return os.path.join(self.processed_data_path, "users.csv")
+    def target(self) -> str:
+        return os.path.join(self.processed_data_path, "target.csv")
 
     @property
     def eda_report(self) -> str:
