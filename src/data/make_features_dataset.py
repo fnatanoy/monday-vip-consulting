@@ -27,6 +27,7 @@ class FeaturesDataset:
             how="outer",
         )
         features = features.drop_duplicates()
+        features = self._drop_na(features)
         target = features.pop("lead_score")
         self._save_dataset(features, target)
 
@@ -52,6 +53,7 @@ class FeaturesDataset:
         )
 
     def _create_accounts_features(self) -> pd.DataFrame:
+        self._fill_team_size()
         features = [
             "account_id",
             "paying",
@@ -107,9 +109,37 @@ class FeaturesDataset:
                     empty_events="sum",
                 )
             )
-            .rename(columns={"user_id": "active_of_users", "date": "active_days"})
+            .rename(columns={"user_id": "active_users", "date": "active_days"})
             .query("total_events > 0")
         )
+
+    def _fill_team_size(self) -> None:
+        one_person_mask = (
+            (self.accounts["team_size"] == "Solo yo")
+            | (self.accounts["team_size"] == "Moi uniquement")
+            | (self.accounts["team_size"] == "Apenas eu")
+            | (self.accounts["team_size"] == "Nur ich")
+        )
+        self.accounts.loc[one_person_mask, "max_team_size"] = 1
+        self.accounts.loc[one_person_mask, "min_team_size"] = 1
+
+        self.accounts["max_team_size"].fillna(-1, inplace=True)
+        self.accounts["min_team_size"].fillna(-1, inplace=True)
+
+        # self.accounts["max_team_size"].fillna(
+        #     self.accounts["max_team_size"].mean(), inplace=True
+        # )
+        # self.accounts["min_team_size"].fillna(
+        #     self.accounts["min_team_size"].mean(), inplace=True
+        # )
+        return
+
+    def _drop_na(self, data: pd.DataFrame) -> pd.DataFrame:
+        # we drop na values from registered_users and active_users. there are 7 vip accounts and 193 non vip. This also drops all the events...
+        data = data[
+            ((~data["registered_users"].isna()) & (~data["active_users"].isna()))
+        ]
+        return data
 
     def _save_dataset(self, features, target) -> None:
         print("Saving dataset...")
