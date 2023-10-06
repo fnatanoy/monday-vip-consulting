@@ -13,4 +13,9 @@ def make_features(ctx, wait=True):
 
 @task()
 def create_eda_report(ctx, wait=True):
-    ctx.run(f"python -m python -m src.visualization.eda", echo=True)
+    ctx.run(f"python -m src.visualization.eda", echo=True)
+
+
+@task()
+def create_features_profiling(ctx, wait=True):
+    ctx.run(f"python -m src.visualization.features_profiling", echo=True)

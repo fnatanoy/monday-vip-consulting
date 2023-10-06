@@ -10,3 +10,5 @@ ipython
 pre-commit
 invoke
 jupyter-black
+matplotlib==3.7
+ydata-profiling

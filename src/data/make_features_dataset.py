@@ -26,6 +26,7 @@ class FeaturesDataset:
             right_index=True,
             how="outer",
         )
+        features = features.drop_duplicates()
         target = features.pop("lead_score")
         self._save_dataset(features, target)
 

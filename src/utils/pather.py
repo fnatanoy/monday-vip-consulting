@@ -58,3 +58,7 @@ class Pather:
     @property
     def eda_report(self) -> str:
         return os.path.join(self.reports_path, "eda_report.html")
+
+    @property
+    def features_profile(self) -> str:
+        return os.path.join(self.reports_path, "features_profile.html")
