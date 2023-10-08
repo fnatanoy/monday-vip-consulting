@@ -8,28 +8,16 @@ from src.utils.pather import Pather
 class EDA:
     def __init__(self) -> None:
         self.pather = Pather()
-        self.accounts = pd.read_csv(self.pather.processed_accounts)
-        self.users = pd.read_csv(self.pather.processed_users)
-        # self.events = pd.read_csv(self.pather.processed_events)
-        self.subscriptions = pd.read_csv(self.pather.processed_subscriptions)
+        self.accounts = pd.read_csv(self.pather.interim_accounts)
+        self.users = pd.read_csv(self.pather.interim_users)
 
         self.report = reportity.Reportity("Monday VIP CONSULTING")
 
     def analyze(self) -> None:
         self._analyze_accounts_users()
-        # self._analyze_subscriptions()
-        # self._plot_events()
-        # self._plot_users()
-        # self._plot_subscriptions()
 
         self.report.save_as_html(self.pather.eda_report)
         self.report.show()
-
-    # def _analyze_subscriptions(self) -> None:
-    #     # import ipdb; ipdb.set_trace()  # fmt: skip
-    #     # subscriptions = self.subscriptions.merge(
-    #     #     self.accounts, on=["account_id", "plan_id"], how="inner"
-    #     # )
 
     def _analyze_accounts_users(self) -> None:
         number_of_accounts = len(self.accounts["account_id"].unique())

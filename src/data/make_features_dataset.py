@@ -54,6 +54,7 @@ class FeaturesDataset:
 
     def _create_accounts_features(self) -> pd.DataFrame:
         self._fill_team_size()
+        self._filter_countries()
         features = [
             "account_id",
             "paying",
@@ -63,7 +64,7 @@ class FeaturesDataset:
             "industry",
             "payment_currency",
             # "region",
-            # "country",
+            "country",
             "lead_score",
         ]
         return (
@@ -75,7 +76,7 @@ class FeaturesDataset:
                     "industry": "category",
                     "payment_currency": "category",
                     # "region": "category",
-                    # "country": "category",
+                    "country": "category",
                 }
             )
         )
@@ -112,6 +113,15 @@ class FeaturesDataset:
             .rename(columns={"user_id": "active_users", "date": "active_days"})
             .query("total_events > 0")
         )
+
+    def _filter_countries(self) -> None:
+        country_counts = self.accounts["country"].value_counts()
+        low_frequency_countries = country_counts[country_counts < 10].index.tolist()
+        default_value = "small_country"
+        self.accounts.loc[:, "country"] = self.accounts["country"].apply(
+            lambda x: default_value if x in low_frequency_countries else x
+        )
+        return
 
     def _fill_team_size(self) -> None:
         one_person_mask = (

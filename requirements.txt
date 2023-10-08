@@ -1,5 +1,5 @@
 plotly
-numpy
+numpy==1.21.6
 pandas
 scikit-learn
 reportity
@@ -12,3 +12,4 @@ invoke
 jupyter-black
 matplotlib==3.7
 ydata-profiling
+scikit-optimize
