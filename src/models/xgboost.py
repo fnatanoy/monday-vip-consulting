@@ -1,7 +1,6 @@
+import argparse
 import pandas as pd
 import xgboost as xgb
-import matplotlib.pyplot as plt
-
 from sklearn.model_selection import train_test_split
 from sklearn.metrics import precision_score, recall_score, f1_score
 from skopt import BayesSearchCV
@@ -106,11 +105,27 @@ def get_xy():
 
 
 if __name__ == "__main__":
-    # train()
-    best_params = dict(
-        learning_rate=0.3,
-        n_estimators=300,
-        max_depth=5,
-        min_child_weight=1,
+    parser = argparse.ArgumentParser(
+        description="",
     )
-    hyperparameter_search(best_params)
+    parser.add_argument(
+        "-m",
+        "--train-mode",
+        help="train or hyper",
+        required=True,
+        type=str,
+    )
+    args = parser.parse_args()
+
+    if args.train_mode == "train":
+        train()
+
+    if args.train_mode == "hyper":
+        hyperparameter_search()
+        best_params = dict(
+            learning_rate=0.3,
+            n_estimators=300,
+            max_depth=5,
+            min_child_weight=1,
+        )
+        hyperparameter_search(best_params)

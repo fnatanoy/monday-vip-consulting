@@ -19,3 +19,14 @@ def create_eda_report(ctx, wait=True):
 @task()
 def create_features_profiling(ctx, wait=True):
     ctx.run(f"python -m src.visualization.features_profiling", echo=True)
+
+
+@task()
+def train_logistic(ctx, wait=True):
+    ctx.run(f"python -m src.models.logistic_regression", echo=True)
+
+
+@task()
+def train_xgboost(ctx, train_mode, wait=True):
+    print(train_mode)
+    ctx.run(f"python -m src.models.xgboost -m {train_mode}", echo=True)

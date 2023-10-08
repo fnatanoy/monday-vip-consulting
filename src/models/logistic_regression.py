@@ -51,5 +51,8 @@ def train():
     print(f"Test recall score: {test_recall}")
 
 
+"""
+python -m src.models.logistic_regression
+"""
 if __name__ == "__main__":
     train()
