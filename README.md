@@ -18,26 +18,51 @@
 
 3. Add all 4 data csvs to `data/raw` folder
 
-4. Create dataset:
+## Create Datasets
+
+1. Create intermediate dataset
 
     ```bash
-    inv create-dataset
+    inv make_interim_dataset
+    ```
+
+2. Create Features
+
+    ```bash
+    inv make_features
     ```
 
 ## EDA
 
 1. Run the following command to generate the EDA report
 
-```bash
-tbd
-```
+    ```bash
+    inv create_eda_report
+    ```
+
+2. Create profiler for the features
+
+    ```bash
+    inv create_features_profiling
+    ```
+
+## Model Training
+
+1. Logistic regression:
+
+    ```bash
+    inv train_logistic
+    ```
+
+2. XGBoost:
+
+    ```bash
+    inv train_xgboost -train-mode train
+    ```
 
 ## Project Organization
 
 ------------
-
-    ├── LICENSE
-    ├── Makefile           <- Makefile with commands like `make data` or `make train`
     ├── README.md          <- The top-level README for developers using this project.
     ├── data
     │   ├── external       <- Data from third party sources.
@@ -56,30 +81,21 @@ tbd
     ├── references         <- Data dictionaries, manuals, and all other explanatory materials.
     │
     ├── reports            <- Generated analysis as HTML, PDF, LaTeX, etc.
-    │   └── figures        <- Generated graphics and figures to be used in reporting
-    │
+    │ 
     ├── requirements.txt   <- The requirements file for reproducing the analysis environment, e.g.
     │                         generated with `pip freeze > requirements.txt`
     │
-    ├── setup.py           <- makes project pip installable (pip install -e .) so src can be imported
     ├── src                <- Source code for use in this project.
     │   ├── __init__.py    <- Makes src a Python module
     │   │
     │   ├── data           <- Scripts to download or generate data
-    │   │   └── make_dataset.py
-    │   │
-    │   ├── features       <- Scripts to turn raw data into features for modeling
-    │   │   └── build_features.py
     │   │
     │   ├── models         <- Scripts to train models and then use trained models to make
     │   │   │                 predictions
-    │   │   ├── predict_model.py
-    │   │   └── train_model.py
     │   │
-    │   └── visualization  <- Scripts to create exploratory and results oriented visualizations
-    │       └── visualize.py
+    │   └── visualization  <- Scripts to create exploratory and results oriented 
     │
-    └── tox.ini            <- tox file with settings for running tox; see tox.readthedocs.io
+    └──
 
 --------
 
